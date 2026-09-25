@@ -31,7 +31,7 @@ The resulting EoS is then used to integrate the TOV equations and determine the 
 ### Python scripts
 
 - `Sistema.py`: plots the relative populations of the fermionic species and the mean values of the bosonic fields as functions of the baryon density.
-- `Estructura.py`: plots the equation of state, \(P(\varepsilon)\), and the mass–radius relation.
+- `Estructura.py`: plots the equation of state, $P(\varepsilon)$, and the mass–radius relation.
 - `Termodinamica.py`: plots the bulk modulus and the effective nucleon mass as functions of the baryon density.
 
 ## Requirements
