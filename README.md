@@ -32,6 +32,10 @@ This EoS is then used to integrate the TOV equations and determine the stellar s
 - `SistemaEcuaciones.f95`: solves the nonlinear system for different baryon densities fixed in `Constants.f95`.
 - `TovsSolver.f95`: integrates the TOV equations using the generated EoS.
 - `Bulk.f95`: computes quantities related to compressibility and effective mass behaviour.
+### Figures
+-  `Sistema.py`: plots the relative population of the fermionic species and the mean value of the bosonic fields vs the barionic density.
+-  `Estructura.py`: plots the equation of state $P(\epsilon)$ and the Mass-Radius curve.
+-  `Termodinamica.py`: plots the bulk modulus and the effective nucleon mass vs the barionic density.
 
 ## Requirements
 
@@ -48,6 +52,8 @@ gfortran -c precision.f95 Constants.f95 Funciones.f95 NumMethods.f95
 gfortran precision.f95 Constants.f95 Funciones.f95 NumMethods.f95 SistemaEcuaciones.f95 -o SistemaEcuaciones.exe
 ```
 To execute the programs `TovsSolver.f95` and `Bulk.f95` substitute `SistemaEcuaciones.f95` and change the name of the program .exe.
+
+The figures must be compiled with Python compiler
 ## How to run
 
 1. Compile `SistemaEcuaciones.f95`.
