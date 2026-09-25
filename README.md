@@ -27,9 +27,9 @@ This EoS is then used to integrate the TOV equations and determine the stellar s
 
 - `precision.f95`: defines the numerical precision (`real128`).
 - `Constants.f95`: physical constants, particle masses, and model parameters.
-- `Funciones.f95`: definitions of densities, chemical potentials, system equations, energy density, pressure, and TOV derivatives.
-- `NumMethods.f95`: interpolation, Jacobian construction, iterative solvers, and RK4 integration routines.
-- `SistemaEcuaciones.f95`: solves the nonlinear system for different baryon densities.
+- `Funciones.f95`: definitions of densities, chemical potentials, mean field equations, energy density, pressure, and TOV derivatives.
+- `NumMethods.f95`: numerical derivatives, interpolation, Jacobian construction, Brodyden's method system solver, and RK4 integration routines. Another auxiliar matrix methods such as Factorization LU system solver are included.
+- `SistemaEcuaciones.f95`: solves the nonlinear system for different baryon densities fixed in `Constants.f95`.
 - `TovsSolver.f95`: integrates the TOV equations using the generated EoS.
 - `Bulk.f95`: computes quantities related to compressibility and effective mass behaviour.
 
@@ -41,25 +41,19 @@ This EoS is then used to integrate the TOV equations and determine the stellar s
 
 ## Compilation
 
-Each program can be compiled separately. For example:
+In order to compile the modules the auxiliar files must be compiled first and in order of nesting. Next, files with the extension .mod are created. Each time that one of the modules is edited, it must be recompiled with the `-c` flag uptdating the .mod file. It is recommended to recompile all modules at the same time when one of them is editted because they are nested.
 
 ```bash
-gfortran -O0 -g -o sistema_ejemplo precision.f95 Constants.f95 Funciones.f95 NumMethods.f95 SistemaEcuaciones.f95
-gfortran -O0 -g -o tov_solver precision.f95 Constants.f95 Funciones.f95 NumMethods.f95 TovsSolver.f95
+gfortran -c precision.f95 Constants.f95 Funciones.f95 NumMethods.f95 
+gfortran precision.f95 Constants.f95 Funciones.f95 NumMethods.f95 SistemaEcuaciones.f95 -o SistemaEcuaciones.exe
 ```
-
-To compile `Bulk.f95`:
-
-```bash
-gfortran -O0 -g -o bulk precision.f95 Constants.f95 Funciones.f95 NumMethods.f95 Bulk.f95
-```
-
+To execute the programs `TovsSolver.f95` and `Bulk.f95` substitute `SistemaEcuaciones.f95` and change the name of the program .exe.
 ## How to run
 
 1. Compile `SistemaEcuaciones.f95`.
 2. Run the generated binary to produce the matter-model output files.
 3. Verify that `EoS.dat` has been generated.
-4. Compile and run `TovsSolver.f95` using that equation of state.
+4. Compile and run `TovsSolver.f95` and `Bulk.f95` using that equation of state.
 5. Inspect the output in `Radio-Masa.dat` and the generated `.dat` files.
 
 ## Main outputs
