@@ -106,4 +106,4 @@ The repository does not currently specify a license. If the code is intended for
 
 ## Project status
 
-This project is currently under development and focuses on the physical and numerical modelling of neutron stars. The overall structure is already in place, but the documentation and code clarity can be improved substantially.
+This project is finished and focuses on the physical and numerical modelling of neutron stars. The overall structure is already in place, but the documentation and code clarity can be improved substantially.
